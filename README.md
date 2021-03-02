@@ -1,6 +1,13 @@
 Alien!
 ======
 
+Game flow
+---------
+
+Below is an illustration of gameplay from creation to game over.
+
+<img src="./img/gameflow.jpg" />
+
 Git standards
 -------------
 
