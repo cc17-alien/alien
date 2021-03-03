@@ -8,10 +8,18 @@ Below is an illustration of gameplay from creation to game over.
 
 <img src="./img/gameflow.jpg" />
 
-Git standards
--------------
+Contribution guidelines
+-----------------------
 
-### General guildelines
+### Git
+
+#### Feature branches
+
+Any changes must be made on feature branches. `main` is protected and cannot be changed directly.
+
+To merge changes into `main`, open a pull request from a feature branch. At least one review is required before merging.
+
+#### Commit standards
 
 - Include a summary: a short, concise statement summarising your commit. Does not end in a period.
 - Include a body: expands on the summary, giving full details on what changed. This can be multiple lines or a bulleted list. Uses correct punctuation and grammar. Not necessary if the summary sufficiently describes the changes.
@@ -19,7 +27,7 @@ Git standards
 - A commit consists of changes related to *one* thing. If your code pertains to several things, break it up into multiple commits.
 - Use "WIP" for works in progress.
 
-### Summary/body/footer structure
+#### Summary/body/footer structure
 
 - Summary: max 50 characters
 - Body: max 72 characters
