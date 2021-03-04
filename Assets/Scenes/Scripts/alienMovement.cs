@@ -5,6 +5,7 @@ using UnityEngine;
 public class alienMovement : MonoBehaviour
 {
     private GameObject player;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,10 +13,19 @@ public class alienMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    GameObject previousePlayer;
     void Update()
     {
-        player = GameObject.Find("Player");
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 2);
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float distanceToPreviousePlayer = 1000000;
+        foreach (GameObject player in players) { 
+                var distance = Vector3.Distance(transform.position, player.transform.position);
+                if(distanceToPreviousePlayer > distance){
+                    distanceToPreviousePlayer = distance;
+                    previousePlayer = player;
+                }
+            }
+        transform.position = Vector3.MoveTowards(transform.position, previousePlayer.transform.position, Time.deltaTime * speed);
         
     }
 }
