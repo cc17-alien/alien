@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Alien
   - Eaten
+  - Objective
   layers:
   - Default
   - TransparentFX
