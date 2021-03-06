@@ -1,15 +1,20 @@
-Alien!
-======
+# Alien!
 
-Game flow
----------
+## Game flow
 
 Below is an illustration of gameplay from creation to game over.
 
 <img src="./img/gameflow.jpg" />
 
-Contribution guidelines
------------------------
+## Contribution guidelines
+
+### Mapbox
+
+To set up the token for Mapbox, select the `Mapbox` > `setup ` tab, paste the token bellow, and hit `Submit`, and close the popup.
+
+```
+pk.eyJ1IjoieW9rbzIwMjA5IiwiYSI6ImNrbHU3Mm53ejBkNG8ybm9qejBkMmk4ZHkifQ.ufnEcCXE_O0vD2CdovLHBg
+```
 
 ### Git
 
@@ -24,7 +29,7 @@ To merge changes into `main`, open a pull request from a feature branch. At leas
 - Include a summary: a short, concise statement summarising your commit. Does not end in a period.
 - Include a body: expands on the summary, giving full details on what changed. This can be multiple lines or a bulleted list. Uses correct punctuation and grammar. Not necessary if the summary sufficiently describes the changes.
 - Include a footer: references specific issue on Github. Can reference multiple issues. Use verbs "resolves", "fixes", "closes", followed by issue number. Not necessary if the commit does not pertain to an issue hosted on Github.
-- A commit consists of changes related to *one* thing. If your code pertains to several things, break it up into multiple commits.
+- A commit consists of changes related to _one_ thing. If your code pertains to several things, break it up into multiple commits.
 - Use "WIP" for works in progress.
 
 #### Summary/body/footer structure
