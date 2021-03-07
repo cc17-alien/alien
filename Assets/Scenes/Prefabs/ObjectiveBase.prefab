@@ -391,10 +391,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countDown: 5
-  CountDownText: {fileID: 5894541269471966093}
+  generatingNoise: 10
+  CountSecondsText: {fileID: 5894541269471966093}
   TaskComplete: {fileID: 4567154578378355055}
   Objective: {fileID: 8791452727006436896}
   CompletionMaterial: {fileID: 2100000, guid: f406aeac1c9d64746b47eef60bdad1b7, type: 2}
+  InteractingPlayer: {fileID: 0}
 --- !u!1 &5894541268657876103
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class objectiveTask : MonoBehaviour
 {
+[Header("Bellow should be assigned to it's own child")]
     public GameObject OpenTaskButton;
     public GameObject Task;
 
@@ -18,6 +19,7 @@ public class objectiveTask : MonoBehaviour
         if (collidedObj.gameObject.tag == "Player")
         {
             OpenTaskButton.SetActive(true);
+            Task.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
         }else if(collidedObj.gameObject.tag == "Eaten")
         {
             OpenTaskButton.SetActive(false);

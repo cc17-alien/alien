@@ -6,16 +6,22 @@ public class TaskHoldButton : MonoBehaviour
 {
     
     public int countDown;
-    public GameObject CountDownText;
+    public int generatingNoise;
+
+[Header("Bellow should be assigned to it's own parent/sybling")]
+    public GameObject CountSecondsText;
     public GameObject TaskComplete;
     private UnityEngine.UI.Text textComponent;
 
     public GameObject Objective;
     public Material CompletionMaterial;
 
+[HideInInspector]
+    public GameObject InteractingPlayer;
+
     public void HandleHoldButton()
     {
-        textComponent = CountDownText.GetComponent<UnityEngine.UI.Text>();
+        textComponent = CountSecondsText.GetComponent<UnityEngine.UI.Text>();
         textComponent.text = countDown.ToString();
         StartCoroutine(CountDown());
     }
@@ -24,6 +30,7 @@ public class TaskHoldButton : MonoBehaviour
     {
         if(countDown > 0){
             yield return new WaitForSeconds(1);
+            InteractingPlayer.GetComponent<playerNoise>().noise += generatingNoise;
             countDown -= 1;
             textComponent.text = countDown.ToString();
             StartCoroutine(CountDown());
