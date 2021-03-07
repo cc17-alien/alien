@@ -15,31 +15,23 @@ public class objectiveTask : MonoBehaviour
 
     void OnTriggerStay(Collider collidedObj)
     {
-        Debug.Log("Player??");
         if (collidedObj.gameObject.tag == "Player")
         {
-            Debug.Log("Yes Player");
             OpenTaskButton.SetActive(true);
+        }else if(collidedObj.gameObject.tag == "Eaten")
+        {
+            OpenTaskButton.SetActive(false);
+            Task.SetActive(false);
         }
     }
 
     void OnTriggerExit(Collider collidedObj)
     {
-        Debug.Log("Out?");
-        if (collidedObj.gameObject.tag == "Player" || collidedObj.gameObject.tag == "Eaten")
+        if (collidedObj.gameObject.tag == "Player")
         {
-            Debug.Log("Out!!!!");
             OpenTaskButton.SetActive(false);    
             Task.SetActive(false);
         }
     }
 
-    public void SetTaskActive()
-    {
-        Task.SetActive(true);
-    }
-    public void SetTaskInactive()
-    {
-        Task.SetActive(false);
-    }
 }
