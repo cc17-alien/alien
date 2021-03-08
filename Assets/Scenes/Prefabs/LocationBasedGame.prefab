@@ -55,9 +55,13 @@ GameObject:
   - component: {fileID: 2284237080421866225}
   - component: {fileID: 2177243244240924729}
   - component: {fileID: 2176926934351994705}
+  - component: {fileID: 1972050610}
+  - component: {fileID: 1972050609}
+  - component: {fileID: 1972050607}
+  - component: {fileID: 1972050608}
   m_Layer: 0
   m_Name: PlayerTarget
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +113,60 @@ MonoBehaviour:
   _rotateZ: 0
   _useNegativeAngle: 0
   _useTransformLocationProvider: 0
+--- !u!54 &1972050610
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279195662656845599}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!135 &1972050609
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279195662656845599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1972050607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279195662656845599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf0180b40ba94e26862d45d8b8c3cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1972050608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279195662656845599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8d92ea57c924d6bb60f0cc18cf539b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noise: 0
 --- !u!1 &2279241674920390049
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +178,7 @@ GameObject:
   - component: {fileID: 2282706847344408143}
   - component: {fileID: 2177489410144044573}
   - component: {fileID: 2177433714987375195}
+  - component: {fileID: 1168665443}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -156,7 +215,7 @@ MonoBehaviour:
   _options:
     locationOptions:
       latitudeLongitude: 37.784179, -122.401583
-      zoom: 16
+      zoom: 15
     extentOptions:
       extentType: 2
       defaultExtents:
@@ -288,6 +347,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 2177489410144044573}
+--- !u!114 &1168665443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279241674920390049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ca09799a564f0458e3b220d4c6dc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 2177489410144044573}
+  _locationStrings:
+  - 60.1924999, 24.9709155
+  - 60.1895303, 24.9689408
+  - 60.1924239, 24.9670392
+  _spawnScale: 2
+  _markerPrefab: {fileID: 4977569638458769192, guid: 073231efd49c6be4faa5a22d5d6c54f4,
+    type: 3}
 --- !u!1 &2279995347085872523
 GameObject:
   m_ObjectHideFlags: 0
