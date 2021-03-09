@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TaskHoldButton : MonoBehaviour
 {
-    
-    public int countDown;
-    public int generatingNoise;
 
-[Header("Bellow should be assigned to it's own parent/sybling")]
+    public int countDown;
+    public int noiseIncreation = 10;
+
+    [Header("Bellow should be assigned to it's own parent/sybling")]
     public GameObject CountSecondsText;
     public GameObject TaskComplete;
     private UnityEngine.UI.Text textComponent;
@@ -16,7 +16,7 @@ public class TaskHoldButton : MonoBehaviour
     public GameObject Objective;
     public Material CompletionMaterial;
 
-[HideInInspector]
+    [HideInInspector]
     public GameObject InteractingPlayer;
 
     public void HandleHoldButton()
@@ -28,17 +28,20 @@ public class TaskHoldButton : MonoBehaviour
 
     IEnumerator CountDown()
     {
-        if(countDown > 0){
+        if (countDown > 0)
+        {
             yield return new WaitForSeconds(1);
-            InteractingPlayer.GetComponent<playerNoise>().noise += generatingNoise;
+            InteractingPlayer.GetComponent<playerNoise>().noise += noiseIncreation = 10;
             countDown -= 1;
             textComponent.text = countDown.ToString();
             StartCoroutine(CountDown());
-        }else if(countDown <= 0){
+        }
+        else if (countDown <= 0)
+        {
             TaskComplete.SetActive(true);
             Objective.GetComponent<MeshRenderer>().material = CompletionMaterial;
         }
-       
+
     }
 
 

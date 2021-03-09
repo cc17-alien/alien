@@ -2605,6 +2605,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3404829931912682441, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3404829931912682447, guid: 4579da7635d10452ab2b7b6b32f4daad,
         type: 3}
       propertyPath: m_RootOrder
@@ -2664,11 +2669,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Alien
-      objectReference: {fileID: 0}
-    - target: {fileID: 3404829931912682483, guid: 4579da7635d10452ab2b7b6b32f4daad,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579da7635d10452ab2b7b6b32f4daad, type: 3}

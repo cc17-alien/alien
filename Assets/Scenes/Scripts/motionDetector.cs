@@ -1,29 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class motionDetector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Camera mainCamera;
+    public int noiseIncreation = 5;
+    public void ToggleMotionDetector()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameObject.activeSelf)
+        mainCamera = GetComponent<Camera>();
+        if (mainCamera.cullingMask == -1)
         {
-            StartCoroutine(SetMotionDetectorInactive());
+            mainCamera.cullingMask = ~(1 << LayerMask.NameToLayer("Alien"));
+            StopAllCoroutines();
         }
+        else
+        {
+            mainCamera.cullingMask = -1;
+            StartCoroutine(IncreasePlayerNoise());
+        }
+
     }
-
-
-    IEnumerator SetMotionDetectorInactive()
+    IEnumerator IncreasePlayerNoise()
     {
-        yield return new WaitForSeconds(2);
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        transform.parent.GetComponent<playerNoise>().noise += noiseIncreation;
+        StartCoroutine(IncreasePlayerNoise());
     }
 }
