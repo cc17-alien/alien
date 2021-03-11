@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ public class alienMovement : MonoBehaviour
     public float speed;
     playerNoise playerNoise;
     GameObject previousPlayer;
-    boolean circling = false;
+    private int circleCount = 0;
+    float radius = 4f;
+    float currentAngle = 0f;
 
     void Update()
     {
@@ -16,28 +19,56 @@ public class alienMovement : MonoBehaviour
         float playerAggro;
         float chaseDistance = 0;
 
-        foreach (GameObject player in arrayOfPlayerObjects){
+        foreach (GameObject player in arrayOfPlayerObjects)
+        {
             playerNoise = player.GetComponent<playerNoise>();
-            float distance = Vector3.Distance(transform.position, player.transform.position);
+            float distance = Vector3.Distance(
+                transform.position, player.transform.position);
             playerAggro = playerNoise.noise + 1 / distance;
-            if (playerAggro > previousPlayerAggro){
+            if (playerAggro > previousPlayerAggro)
+            {
                 previousPlayerAggro = playerAggro;
                 previousPlayer = player;
                 chaseDistance = distance;
             }
         }
 
-        if (chaseDistance <= 8.5 && previousPlayer.GetComponent<playerNoise>().noise <= 5)
+        if (circleCount == 0)
         {
-
+            if (chaseDistance <= 8.5 &&
+                previousPlayer.GetComponent<playerNoise>().noise <= 500)
+            {
+                StartCoroutine(CirclePlayer(previousPlayer));
+            }
+            else
+            {
+                Vector3 destination = previousPlayer.transform.position;
+                transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);      
+            }
         }
+        else
+        {
+            currentAngle += Time.deltaTime * speed;
+            int dirMod = circleCount % 2 == 0 ? -1 : 1;
+            float x = radius * Mathf.Sin(currentAngle * dirMod);
+            float z = radius * Mathf.Cos(currentAngle * dirMod);
+            transform.position = new Vector3 (x, 0, z);
+        }
+    }
 
-        // if alien within 8.5 distance of player, patrols a 120 degree semicircle around player
-        // player can move away from alien, but if noise increases alien moves to player
-        // player has 2/3 chance to escape if he quietly moves in any dirction
-        // after 10 seconds, if player > 20 distance from alien, alien moves off
-        Vector3 playerLocation = previousPlayer.transform.position;
-        Vector3 destination = chaseDistance <= 8.5 ? new Vector3(5, 0, 5) + playerLocation : playerLocation;
-        transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);      
-    }    
+    IEnumerator CirclePlayer(GameObject player)
+    {
+        circleCount += 1;
+
+        yield return new WaitForSeconds(1);
+
+        if (circleCount >= 10 || player != previousPlayer)
+        {
+            circleCount = 0;
+        }
+        else
+        {
+            StartCoroutine(CirclePlayer(player));
+        }
+    }
 }
