@@ -7,9 +7,12 @@ public class playerNoise : MonoBehaviour
 {
     // Start is called before the first frame update
     public float noise;
+    private Vector3 lastPosition;
+    private float lastMovement = 0;
+
     void Start()
     {
-        StartCoroutine(NoiseReduction());
+        StartCoroutine(AdjustNoise());
     }
 
     // Update is called once per frame
@@ -30,17 +33,45 @@ public class playerNoise : MonoBehaviour
         return Math.Abs(dir.x) + Math.Abs(dir.z);
     }
 
-    IEnumerator NoiseReduction()
+    float GetDistance() {
+
+        Vector3 coordinates = transform.position;
+        float distance = Vector3.Distance(lastPosition, coordinates);
+        lastPosition = coordinates;
+
+        return distance;
+    }
+
+    IEnumerator AdjustNoise()
     {
         yield return new WaitForSeconds(1);
 
         float tilt = GetTilt();
+        float speed = GetDistance();
 
-        if (tilt < 0.005 && noise > 0)
+        int movement = speed <= 0.5 ? 0 :
+                       speed <= 2.5 ? 5 :
+                       speed <= 5.0 ? 10 :
+                       speed <= 8.0 ? 20 :
+                       speed <= 12.0 ? 50 : 100;
+
+        noise = (noise - lastMovement) + Math.Max(movement, lastMovement);
+
+        if (movement >= lastMovement)
         {
-            noise -= 1;
+            lastMovement = movement;
+        }
+        else if (lastMovement >= 5)
+        {
+            lastMovement -= 5;
         }
 
-        StartCoroutine(NoiseReduction());
+        if (tilt < 0.01 && noise > 0 && speed < 0.5)
+        {
+            float modifier = Math.Min(100 / (tilt * 10000), 10);
+            noise -= modifier;
+        }
+
+        StartCoroutine(AdjustNoise());
     }
 }
