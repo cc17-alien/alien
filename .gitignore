@@ -72,4 +72,5 @@ crashlytics-build.properties
 
 # Mapbox
 /[Aa]ssets/[Rr]esources/[Mm]apbox/MapboxConfiguration.txt
+/[Aa]ssets/[Rr]esources/[Mm]apbox/MapboxConfiguration.txt.meta
 
