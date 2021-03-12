@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerEaten : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class playerEaten : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+ 
     }
 
     void OnCollisionEnter(Collision collision)
@@ -21,6 +22,8 @@ public class playerEaten : MonoBehaviour
         if (collision.gameObject.tag == "Alien")
         {
             gameObject.tag = "Eaten";
+            //Go to YouAreEaten scene
+            SceneManager.LoadScene(4);
         }
     }
 }
