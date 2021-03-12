@@ -12,7 +12,7 @@ public class alienMovement : MonoBehaviour
     private float radius = 10f;
     private float currentAngle = 0f;
     private float chaseThreashhold = 8.5f;
-    private int noiseThreshhold = 500;
+    private int noiseThreshhold = 5;
     private int circleLimit = 30;
 
     void Update()
@@ -47,19 +47,26 @@ public class alienMovement : MonoBehaviour
             else
             {
                 Vector3 destination = previousPlayer.transform.position;
-                transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);      
+                transform.position = Vector3.MoveTowards(
+                    transform.position, destination, Time.deltaTime * speed);      
             }
         }
         else
         {
-            currentAngle += Time.deltaTime * speed;
+            if (previousPlayer.GetComponent<playerNoise>().noise > noiseThreshhold)
+            {
+                previousPlayer.GetComponent<playerNoise>().noise += 10;
+                circleCount = 0;
+            }
             if (circleCount >= (circleLimit / 3))
             {
-                float expand = (circleCount / circleLimit);
+                currentAngle += Time.deltaTime * speed;
+                float expand = circleCount < (circleLimit / 3) * 2 ? 1.0f : 1.5f;
                 float x = radius * Mathf.Sin(currentAngle / expand);
                 float z = radius * Mathf.Cos(currentAngle / expand);
                 Vector3 circleDestination = new Vector3(x, 0, z) + transform.position;
-                transform.position = Vector3.MoveTowards(transform.position, circleDestination, Time.deltaTime * speed);
+                transform.position = Vector3.MoveTowards(
+                    transform.position, circleDestination, Time.deltaTime * (speed * expand));
             }
         }
     }
