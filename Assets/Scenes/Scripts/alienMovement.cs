@@ -9,15 +9,18 @@ public class alienMovement : MonoBehaviour
     playerNoise playerNoise;
     GameObject previousPlayer;
     private int circleCount = 0;
-    float radius = 4f;
-    float currentAngle = 0f;
+    private float radius = 10f;
+    private float currentAngle = 0f;
+    private float chaseThreashhold = 8.5f;
+    private int noiseThreshhold = 500;
+    private int circleLimit = 30;
 
     void Update()
     {
         GameObject[] arrayOfPlayerObjects = GameObject.FindGameObjectsWithTag("Player");
-        float previousPlayerAggro = 0;
+        float previousPlayerAggro = 0f;
         float playerAggro;
-        float chaseDistance = 0;
+        float chaseDistance = 0f;
 
         foreach (GameObject player in arrayOfPlayerObjects)
         {
@@ -25,6 +28,7 @@ public class alienMovement : MonoBehaviour
             float distance = Vector3.Distance(
                 transform.position, player.transform.position);
             playerAggro = playerNoise.noise + 1 / distance;
+
             if (playerAggro > previousPlayerAggro)
             {
                 previousPlayerAggro = playerAggro;
@@ -35,8 +39,8 @@ public class alienMovement : MonoBehaviour
 
         if (circleCount == 0)
         {
-            if (chaseDistance <= 8.5 &&
-                previousPlayer.GetComponent<playerNoise>().noise <= 500)
+            if (chaseDistance <= chaseThreashhold &&
+                previousPlayer.GetComponent<playerNoise>().noise <= noiseThreshhold)
             {
                 StartCoroutine(CirclePlayer(previousPlayer));
             }
@@ -49,10 +53,14 @@ public class alienMovement : MonoBehaviour
         else
         {
             currentAngle += Time.deltaTime * speed;
-            int dirMod = circleCount % 2 == 0 ? -1 : 1;
-            float x = radius * Mathf.Sin(currentAngle * dirMod);
-            float z = radius * Mathf.Cos(currentAngle * dirMod);
-            transform.position = new Vector3 (x, 0, z);
+            if (circleCount >= (circleLimit / 3))
+            {
+                float expand = (circleCount / circleLimit);
+                float x = radius * Mathf.Sin(currentAngle / expand);
+                float z = radius * Mathf.Cos(currentAngle / expand);
+                Vector3 circleDestination = new Vector3(x, 0, z) + transform.position;
+                transform.position = Vector3.MoveTowards(transform.position, circleDestination, Time.deltaTime * speed);
+            }
         }
     }
 
@@ -62,7 +70,7 @@ public class alienMovement : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        if (circleCount >= 10 || player != previousPlayer)
+        if (circleCount >= circleLimit || player != previousPlayer)
         {
             circleCount = 0;
         }
