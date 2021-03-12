@@ -7,6 +7,7 @@ TagManager:
   - Alien
   - Eaten
   - Objective
+  - TaskComplete
   layers:
   - Default
   - TransparentFX

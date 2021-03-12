@@ -19,5 +19,12 @@ public class GameManager : MonoBehaviour
          if (arrayOfPlayerObjects.Length == 0) {
              SceneManager.LoadScene(2);
          } 
+
+        //congratulations
+        int objectiveNumber = GameObject.FindGameObjectsWithTag("Objective").Length;
+             
+        if(objectiveNumber == 0){
+            SceneManager.LoadScene(3);
     }
+}
 }
