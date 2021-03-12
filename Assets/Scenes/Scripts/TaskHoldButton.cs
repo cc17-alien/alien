@@ -19,6 +19,10 @@ public class TaskHoldButton : MonoBehaviour
     [HideInInspector]
     public GameObject InteractingPlayer;
 
+    private IndicatorX IndicatorX;
+    private Transform transformX;
+    private GameObject gameObjectX;
+
     public void HandleHoldButton()
     {
         textComponent = CountSecondsText.GetComponent<UnityEngine.UI.Text>();
@@ -41,6 +45,10 @@ public class TaskHoldButton : MonoBehaviour
             TaskComplete.SetActive(true);
             Objective.GetComponent<MeshRenderer>().material = CompletionMaterial;
             Objective.tag = "TaskComplete";
+
+            //setting IndicatorX's & Y's "isComplete" to true (to change it's color and size);
+            transform.parent.parent.gameObject.GetComponentInChildren<IndicatorX>().isComplete = true;
+            transform.parent.parent.gameObject.GetComponentInChildren<IndicatorY>().isComplete = true;
         }
 
     }

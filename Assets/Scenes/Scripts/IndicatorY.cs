@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class IndicatorY : MonoBehaviour
 {
     public Color32 color;
+    public Color32 completedColor;
+    public bool isComplete = false;
 
     private Transform Objective;
     private Camera MainCam;
@@ -26,6 +28,13 @@ public class IndicatorY : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //when task is complete, change the size of indicator
+        if(isComplete)
+        {
+            GetComponent<RectTransform>().sizeDelta = new Vector2(5, 7);
+        }
+
+        
         //this converts the Objective's position to a position reletive to the Camera view.
         //(0, 0) ~ (1, 1) is within the camera view
         Vector3 objPosition = MainCam.WorldToViewportPoint(Objective.position);
@@ -33,7 +42,7 @@ public class IndicatorY : MonoBehaviour
         if (objPosition.y > 1)  // Objective is over the top
         {
             //make self yellow
-            GetComponent<Image>().color = color;
+            GetComponent<Image>().color = isComplete ? completedColor : color;
 
             y = (Screen.height - spriteWidth) / 2;
             SetX(objPosition);
@@ -41,7 +50,7 @@ public class IndicatorY : MonoBehaviour
         else if (objPosition.y < 0)  // Objective is below the bottom, 
         {
             //make self yellow
-            GetComponent<Image>().color = color;
+            GetComponent<Image>().color = isComplete ? completedColor : color;
 
             y = -(Screen.height - spriteWidth) / 2;
             SetX(objPosition);
