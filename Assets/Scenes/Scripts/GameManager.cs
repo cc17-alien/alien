@@ -14,17 +14,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //You are ALL eaten
         GameObject[] arrayOfPlayerObjects = GameObject.FindGameObjectsWithTag("Player");
 
          if (arrayOfPlayerObjects.Length == 0) {
              SceneManager.LoadScene(2);
          } 
 
-        //congratulations
+        //Congratulations
         int objectiveNumber = GameObject.FindGameObjectsWithTag("Objective").Length;
              
         if(objectiveNumber == 0){
             SceneManager.LoadScene(3);
+        
     }
 }
 }
