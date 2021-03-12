@@ -70,7 +70,3 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# Mapbox
-/[Aa]ssets/[Rr]esources/[Mm]apbox/MapboxConfiguration.txt
-/[Aa]ssets/[Rr]esources/[Mm]apbox/MapboxConfiguration.txt.meta
-
