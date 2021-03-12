@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countDown: 5
-  generatingNoise: 10
+  noiseIncreation: 10
   CountSecondsText: {fileID: 5894541269471966093}
   TaskComplete: {fileID: 4567154578378355055}
   Objective: {fileID: 8791452727006436896}

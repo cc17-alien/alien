@@ -40,6 +40,7 @@ public class TaskHoldButton : MonoBehaviour
         {
             TaskComplete.SetActive(true);
             Objective.GetComponent<MeshRenderer>().material = CompletionMaterial;
+            Objective.tag = "TaskComplete";
         }
 
     }
