@@ -9,7 +9,8 @@ public class alienMovement : MonoBehaviour
     public int noiseThreshhold;
     public int searchLimit;
     public float searchRadius;
-    public float searchThreashhold;
+    public float searchStartDistance;
+    public int searchStopNoise;
 
     playerNoise playerNoise;
     GameObject targetPlayer;
@@ -21,22 +22,23 @@ public class alienMovement : MonoBehaviour
     void Update()
     {
         SetSearchPlayerAndDistance();
+        float targetPlayerNoise = targetPlayer.GetComponent<playerNoise>().noise;
 
         if (searchCount == 0)
         {
-            if (searchDistance <= searchThreashhold &&
-                targetPlayer.GetComponent<playerNoise>().noise <= noiseThreshhold)
+            if (searchDistance <= searchStartDistance &&
+                targetPlayerNoise <= searchStopNoise)
             {
                 StartCoroutine(SearchCycle(targetPlayer));
             }
             else
             {
-                MoveToPlayer();
+                MoveToPlayer(targetPlayerNoise);
             }
         }
         else
         {
-            if (targetPlayer.GetComponent<playerNoise>().noise > noiseThreshhold)
+            if (targetPlayerNoise > searchStopNoise)
             {
                 StopSearchPlayer();
             }
@@ -69,11 +71,18 @@ public class alienMovement : MonoBehaviour
         }
     }
 
-    void MoveToPlayer()
+    void MoveToPlayer(float noise)
     {
         Vector3 destination = targetPlayer.transform.position;
+        float speedMult = noise >= noiseThreshhold * 10 ? 10f :
+                          noise >= noiseThreshhold * 6 ? 2.25f :
+                          noise >= noiseThreshhold * 4 ? 2f :
+                          noise >= noiseThreshhold * 2 ? 1.75f :
+                          noise >= noiseThreshhold ? 1.5f : 1;
+        float moveSpeed = Time.deltaTime * speed * speedMult;
+
         transform.position = Vector3.MoveTowards(
-            transform.position, destination, Time.deltaTime * speed);      
+            transform.position, destination, moveSpeed);
     }
 
     void SearchPlayer()
