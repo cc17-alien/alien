@@ -12,6 +12,7 @@ public class playerNoise : MonoBehaviour
 
     void Start()
     {
+        lastPosition = transform.position;
         StartCoroutine(AdjustNoise());
     }
 
