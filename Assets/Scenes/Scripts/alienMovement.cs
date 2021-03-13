@@ -6,16 +6,17 @@ using UnityEngine;
 public class alienMovement : MonoBehaviour
 {
     public float speed;
+    public int noiseThreshhold;
+    public int searchLimit;
+    public float searchRadius;
+    public float searchThreashhold;
+
     playerNoise playerNoise;
     GameObject targetPlayer;
 
-    private int noiseThreshhold = 5;
     private float searchAngle = 0f;
     private int searchCount = 0;
     private float searchDistance = 0f;
-    private int searchLimit = 30;
-    private float searchRadius = 10f;
-    private float searchThreashhold = 8.5f;
 
     void Update()
     {
