@@ -6,84 +6,118 @@ using UnityEngine;
 public class alienMovement : MonoBehaviour
 {
     public float speed;
+    public int noiseThreshhold;
+    public int searchLimit;
+    public float searchRadius;
+    public float searchStartDistance;
+    public int searchStopNoise;
+
     playerNoise playerNoise;
-    GameObject previousPlayer;
-    private int circleCount = 0;
-    private float radius = 10f;
-    private float currentAngle = 0f;
-    private float chaseThreashhold = 8.5f;
-    private int noiseThreshhold = 5;
-    private int circleLimit = 30;
+    GameObject targetPlayer;
+
+    private float searchAngle = 0f;
+    private int searchCount = 0;
+    private float searchDistance = 0f;
 
     void Update()
     {
-        GameObject[] arrayOfPlayerObjects = GameObject.FindGameObjectsWithTag("Player");
-        float previousPlayerAggro = 0f;
-        float playerAggro;
-        float chaseDistance = 0f;
+        SetSearchPlayerAndDistance();
+        float targetPlayerNoise = targetPlayer.GetComponent<playerNoise>().noise;
 
-        foreach (GameObject player in arrayOfPlayerObjects)
+        if (searchCount == 0)
+        {
+            if (searchDistance <= searchStartDistance &&
+                targetPlayerNoise <= searchStopNoise)
+            {
+                StartCoroutine(SearchCycle(targetPlayer));
+            }
+            else
+            {
+                MoveToPlayer(targetPlayerNoise);
+            }
+        }
+        else
+        {
+            if (targetPlayerNoise > searchStopNoise)
+            {
+                StopSearchPlayer();
+            }
+            if (searchCount >= (searchLimit / 3))
+            {
+                SearchPlayer();
+            }
+        }
+    }
+
+    void SetSearchPlayerAndDistance()
+    {
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        float targetPlayerAggro = 0f;
+        float playerAggro;
+
+        foreach (GameObject player in playerObjects)
         {
             playerNoise = player.GetComponent<playerNoise>();
             float distance = Vector3.Distance(
                 transform.position, player.transform.position);
             playerAggro = playerNoise.noise + 1 / distance;
 
-            if (playerAggro > previousPlayerAggro)
+            if (playerAggro > targetPlayerAggro)
             {
-                previousPlayerAggro = playerAggro;
-                previousPlayer = player;
-                chaseDistance = distance;
-            }
-        }
-
-        if (circleCount == 0)
-        {
-            if (chaseDistance <= chaseThreashhold &&
-                previousPlayer.GetComponent<playerNoise>().noise <= noiseThreshhold)
-            {
-                StartCoroutine(CirclePlayer(previousPlayer));
-            }
-            else
-            {
-                Vector3 destination = previousPlayer.transform.position;
-                transform.position = Vector3.MoveTowards(
-                    transform.position, destination, Time.deltaTime * speed);      
-            }
-        }
-        else
-        {
-            if (previousPlayer.GetComponent<playerNoise>().noise > noiseThreshhold)
-            {
-                previousPlayer.GetComponent<playerNoise>().noise += 10;
-                circleCount = 0;
-            }
-            if (circleCount >= (circleLimit / 3))
-            {
-                currentAngle += Time.deltaTime * speed;
-                float expand = circleCount < (circleLimit / 3) * 2 ? 1.0f : 1.5f;
-                float x = radius * Mathf.Sin(currentAngle / expand);
-                float z = radius * Mathf.Cos(currentAngle / expand);
-                Vector3 circleDestination = new Vector3(x, 0, z) + transform.position;
-                transform.position = Vector3.MoveTowards(
-                    transform.position, circleDestination, Time.deltaTime * (speed * expand));
+                targetPlayerAggro = playerAggro;
+                targetPlayer = player;
+                searchDistance = distance;
             }
         }
     }
 
-    IEnumerator CirclePlayer(GameObject player)
+    void MoveToPlayer(float noise)
     {
-        circleCount += 1;
+        Vector3 destination = targetPlayer.transform.position;
+        float speedMult = noise >= noiseThreshhold * 10 ? 10f :
+                          noise >= noiseThreshhold * 6 ? 2.25f :
+                          noise >= noiseThreshhold * 4 ? 2f :
+                          noise >= noiseThreshhold * 2 ? 1.75f :
+                          noise >= noiseThreshhold ? 1.5f : 1;
+        float moveSpeed = Time.deltaTime * speed * speedMult;
+
+        transform.position = Vector3.MoveTowards(
+            transform.position, destination, moveSpeed);
+    }
+
+    void SearchPlayer()
+    {
+        searchAngle += Time.deltaTime * speed;
+        int speedMult = searchCount < (searchLimit / 3) * 2 ? 1 : 2;
+        float x = searchRadius * Mathf.Sin(searchAngle);
+        float z = searchRadius * Mathf.Cos(searchAngle);
+
+        Vector3 searchDestination = new Vector3(x, 0, z) + transform.position;
+        float searchSpeed = Time.deltaTime * speed * speedMult;
+
+        transform.position = Vector3.MoveTowards(
+            transform.position, searchDestination, searchSpeed);
+    }
+
+    void StopSearchPlayer()
+    {
+        targetPlayer.GetComponent<playerNoise>().noise += 10;
+        searchCount = 0;
+    }
+
+    IEnumerator SearchCycle(GameObject player)
+    {
+        searchCount += 1;
 
         yield return new WaitForSeconds(1);
 
-        if (circleCount >= circleLimit || player != previousPlayer)
+        if (searchCount >= searchLimit || player != targetPlayer)
         {
-            circleCount = 0;
+            searchCount = 0;
         }
         else
         {
-            StartCoroutine(CirclePlayer(player));
+            StartCoroutine(SearchCycle(player));
         }
     }
 }

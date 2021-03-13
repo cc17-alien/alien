@@ -252,6 +252,11 @@ PrefabInstance:
       propertyPath: OpenTaskButton
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4838025953255709678, guid: ced95339a8dd34194822ad694cb6191f,
+        type: 3}
+      propertyPath: noise
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8734581618811409366, guid: ced95339a8dd34194822ad694cb6191f,
         type: 3}
       propertyPath: m_Name
@@ -2551,6 +2556,41 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: searchLimit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: searchNoise
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: searchRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: noiseThreshhold
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: searchStopNoise
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: searchThreashhold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: searchStartDistance
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3404829931912682447, guid: 4579da7635d10452ab2b7b6b32f4daad,
         type: 3}
       propertyPath: m_RootOrder
@@ -2614,7 +2654,7 @@ PrefabInstance:
     - target: {fileID: 3404829931912682483, guid: 4579da7635d10452ab2b7b6b32f4daad,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579da7635d10452ab2b7b6b32f4daad, type: 3}

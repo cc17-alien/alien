@@ -5,7 +5,7 @@ using UnityEngine;
 public class motionDetector : MonoBehaviour
 {
     private Camera mainCamera;
-    public int noiseIncreation = 5;
+    public int noiseIncreation;
     public void ToggleMotionDetector()
     {
         mainCamera = GetComponent<Camera>();
