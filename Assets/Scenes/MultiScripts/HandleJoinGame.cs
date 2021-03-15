@@ -27,7 +27,6 @@ public class HandleJoinGame : MonoBehaviourPunCallbacks
     }
 
     public void JoinOrCreatePrivateRoom() {
-        Debug.Log(roomName);
         PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), null);
     }
 

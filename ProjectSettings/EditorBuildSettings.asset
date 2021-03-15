@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/JoinRoom.unity
     guid: fd4c7341971dc499bbb055964b6aa4d3
   - enabled: 1
-    path: Assets/BasicGameScene.unity
-    guid: ae2840ad3803545f2b8b25b377f94b67
+    path: Assets/Scenes/Multiplayer.unity
+    guid: 0d7e21903ba04b442977b8a039c8d7e8
   - enabled: 1
     path: Assets/Scenes/AllEaten.unity
     guid: 2c26c88b2c8c34234a9b07ee6594dcc8
+  - enabled: 1
+    path: Assets/BasicGameScene.unity
+    guid: ae2840ad3803545f2b8b25b377f94b67
   m_configObjects: {}
