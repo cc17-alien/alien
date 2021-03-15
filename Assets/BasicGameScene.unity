@@ -1217,6 +1217,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010138560}
   m_CullTransparentMesh: 0
+--- !u!1 &1085665430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 120295284, guid: 4579da7635d10452ab2b7b6b32f4daad,
+    type: 3}
+  m_PrefabInstance: {fileID: 3404829932742204781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1085665433
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085665430}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6835787f735925488048f254db3c66c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1161808986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,6 +2721,11 @@ PrefabInstance:
     - target: {fileID: 3404829931912682441, guid: 4579da7635d10452ab2b7b6b32f4daad,
         type: 3}
       propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404829931912682445, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
