@@ -14,7 +14,8 @@ public class TaskHoldButton : MonoBehaviour
     private UnityEngine.UI.Text textComponent;
 
     public GameObject Objective;
-    public Material CompletionMaterial;
+    public GameObject ObjectiveSprite;
+    public Sprite CompletionSprite;
 
     [HideInInspector]
     public GameObject InteractingPlayer;
@@ -43,7 +44,8 @@ public class TaskHoldButton : MonoBehaviour
         else if (countDown <= 0)
         {
             TaskComplete.SetActive(true);
-            Objective.GetComponent<MeshRenderer>().material = CompletionMaterial;
+            // Objective.GetComponent<MeshRenderer>().material = CompletionMaterial;
+            ObjectiveSprite.GetComponent<SpriteRenderer>().sprite = CompletionSprite;
             Objective.tag = "TaskComplete";
 
             //setting IndicatorX's & Y's "isComplete" to true (to change it's color and size);
