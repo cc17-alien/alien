@@ -22,6 +22,9 @@ public class alienMovement : MonoBehaviour
     void Update()
     {
         SetSearchPlayerAndDistance();
+
+        ProximityIndicator();
+
         float targetPlayerNoise = targetPlayer.GetComponent<playerNoise>().noise;
 
         if (searchCount == 0)
@@ -69,6 +72,15 @@ public class alienMovement : MonoBehaviour
                 searchDistance = distance;
             }
         }
+    }
+
+    void ProximityIndicator()
+    {
+        int alertLevel = searchDistance > searchStartDistance * 2 ? 0 :
+                         searchDistance > searchStartDistance * 1.5 ? 1 :
+                         searchDistance > searchStartDistance ? 2 :
+                         searchDistance > searchStartDistance * 0.75 ? 3 :
+                         searchDistance > searchStartDistance * 0.5 ? 4 : 5;
     }
 
     void MoveToPlayer(float noise)
