@@ -21,14 +21,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] arrayOfPlayerObjects = GameObject.FindGameObjectsWithTag("Player");
 
          if (arrayOfPlayerObjects.Length == 0) {
-             SceneManager.LoadScene(2);
+             SceneManager.LoadScene("AllEaten");
          }
 
          //Congratulations
         int objectiveNumber = GameObject.FindGameObjectsWithTag("Objective").Length;
                 
         if(objectiveNumber == 0){
-            SceneManager.LoadScene(3); 
+            SceneManager.LoadScene("Congratulations"); 
         }
     }
 

@@ -19,7 +19,8 @@ public class HandleGameOver : MonoBehaviourPunCallbacks
     }
 
     public void PlayAgain() {
-        SceneManager.LoadScene(1);
+        //WIP = will need to find way to know host/nonhost player
+        SceneManager.LoadScene("HostWaits");
     }
 
     public void BackToHome() {
@@ -27,6 +28,6 @@ public class HandleGameOver : MonoBehaviourPunCallbacks
     }
 
     public override void OnLeftRoom() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Home");
     }
 }

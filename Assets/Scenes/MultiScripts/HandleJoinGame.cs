@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -23,14 +24,14 @@ public class HandleJoinGame : MonoBehaviourPunCallbacks
 
     public void setRoomName(string value) {
         roomName = value;
-        //Debug.Log(roomName);
     }
 
     public void JoinOrCreatePrivateRoom() {
-        PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), null);
+        //PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), null);
+        PhotonNetwork.JoinRoom(roomName);
     }
 
     public override void OnJoinedRoom() {
-        Debug.Log("Joined Room!");
+        SceneManager.LoadScene("FriendsWait");
     }
 }

@@ -23,7 +23,7 @@ public class playerEaten : MonoBehaviour
         {
             gameObject.tag = "Eaten";
             //Go to YouAreEaten scene
-            SceneManager.LoadScene(4);
+            //SceneManager.LoadScene(4);
         }
     }
 }

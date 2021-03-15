@@ -6,9 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: b2d5c000996bd471fafdfbfffa8bbfcd
+  - enabled: 1
     path: Assets/Scenes/CreateGame.unity
     guid: fd4c7341971dc499bbb055964b6aa4d3
   - enabled: 1
-    path: Assets/BasicGameScene.unity
-    guid: ae2840ad3803545f2b8b25b377f94b67
+    path: Assets/Scenes/JoinRoom.unity
+    guid: 86d02d1bab9814b45ac375e392215360
+  - enabled: 1
+    path: Assets/Scenes/HostWaits.unity
+    guid: 6de9f3aa00f18493c85ae7bede84266a
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer.unity
+    guid: 0d7e21903ba04b442977b8a039c8d7e8
+  - enabled: 1
+    path: Assets/Scenes/AllEaten.unity
+    guid: 2c26c88b2c8c34234a9b07ee6594dcc8
+  - enabled: 1
+    path: Assets/Scenes/Congratulations.unity
+    guid: 04cf19dd25abc4ed9892edf53b0b5db0
   m_configObjects: {}
