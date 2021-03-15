@@ -20,7 +20,7 @@ public class IndicatorX : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MainCam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        MainCam = GameObject.Find("Camera").GetComponent<Camera>();
         Objective = transform.parent.parent.Find("Objective");
         spriteWidth = GetComponent<RectTransform>().sizeDelta.x;
     }

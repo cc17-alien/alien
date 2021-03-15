@@ -8,16 +8,14 @@ using Photon.Realtime;
 public class PhotonLauncher : MonoBehaviourPunCallbacks
 {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Connect();
-    }
-
-    // Update is called once per frame
     void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
+    void Start()
+    {
+        Connect();
     }
 
     #region PunCallbacks
@@ -31,8 +29,9 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom() {
-        Debug.Log("OnJoinedRoom called by PUN, user is in room");
-        SceneManager.LoadScene(1);
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1) {
+            PhotonNetwork.LoadLevel(1);
+        }
     }
 
     #endregion
