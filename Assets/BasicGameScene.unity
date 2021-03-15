@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900e438c2d0e84bc4bd34c114b05504e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
 --- !u!4 &327710081
 Transform:
   m_ObjectHideFlags: 0
@@ -1415,6 +1416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308803759177605737, guid: 0562c7f19f6f49845a603ceee05e99c9,
+        type: 3}
+      propertyPath: m_Name
+      value: Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0562c7f19f6f49845a603ceee05e99c9, type: 3}
