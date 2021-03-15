@@ -89,8 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color:
     serializedVersion: 2
-    rgba: 4278255615
+    rgba: 4278255360
   completedColor:
     serializedVersion: 2
-    rgba: 1476460288
+    rgba: 2566979327
   isComplete: 0

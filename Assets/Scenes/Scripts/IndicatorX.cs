@@ -8,7 +8,7 @@ public class IndicatorX : MonoBehaviour
     public Color32 color;
     public Color32 completedColor;
     public bool isComplete = false;
-    
+
     private Transform Objective;
     private Camera MainCam;
 
@@ -29,12 +29,12 @@ public class IndicatorX : MonoBehaviour
     void Update()
     {
         //when task is complete, change the size of indicator
-        if(isComplete)
+        if (isComplete)
         {
-            GetComponent<RectTransform>().sizeDelta = new Vector2(5, 7);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(5, 15);
         }
 
-        
+
         //this converts the Objective's position to a position reletive to the Camera view.
         //(0, 0) ~ (1, 1) is within the camera view
         Vector3 objPosition = MainCam.WorldToViewportPoint(Objective.position);
@@ -59,7 +59,7 @@ public class IndicatorX : MonoBehaviour
         else
         {
             //make self transparent
-            GetComponent<Image>().color = new Color32(0,0,0,0);
+            GetComponent<Image>().color = new Color32(0, 0, 0, 0);
         }
 
         transform.localPosition = new Vector3(x, y, 0);

@@ -31,7 +31,7 @@ public class IndicatorY : MonoBehaviour
         //when task is complete, change the size of indicator
         if(isComplete)
         {
-            GetComponent<RectTransform>().sizeDelta = new Vector2(5, 7);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(5, 15);
         }
 
         
