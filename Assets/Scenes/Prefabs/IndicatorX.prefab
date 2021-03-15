@@ -90,3 +90,7 @@ MonoBehaviour:
   color:
     serializedVersion: 2
     rgba: 4278255615
+  completedColor:
+    serializedVersion: 2
+    rgba: 1476460288
+  isComplete: 0

@@ -15,6 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/AllEaten.unity
     guid: 2c26c88b2c8c34234a9b07ee6594dcc8
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/BasicGameScene.unity
     guid: ae2840ad3803545f2b8b25b377f94b67
+=======
+    path: Assets/Scenes/Congratulations.unity
+    guid: 04cf19dd25abc4ed9892edf53b0b5db0
+  - enabled: 1
+    path: Assets/Scenes/YouAreEaten.unity
+    guid: d82b102afe4b140929db8f811b9721b9
+>>>>>>> e6ebf380b63e3d1f3d96939395049a3eaabf7ce5
   m_configObjects: {}

@@ -22,7 +22,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
          if (arrayOfPlayerObjects.Length == 0) {
              SceneManager.LoadScene(2);
-         } 
+         }
+
+         //Congratulations
+        int objectiveNumber = GameObject.FindGameObjectsWithTag("Objective").Length;
+                
+        if(objectiveNumber == 0){
+            SceneManager.LoadScene(3); 
+        }
     }
 
     void SpawnPlayer() {
