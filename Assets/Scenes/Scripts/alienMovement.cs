@@ -74,13 +74,15 @@ public class alienMovement : MonoBehaviour
         }
     }
 
-    void ProximityIndicator()
+    public float ProximityIndicator()
     {
-        int alertLevel = searchDistance > searchStartDistance * 2 ? 0 :
-                         searchDistance > searchStartDistance * 1.5 ? 1 :
-                         searchDistance > searchStartDistance ? 2 :
-                         searchDistance > searchStartDistance * 0.75 ? 3 :
-                         searchDistance > searchStartDistance * 0.5 ? 4 : 5;
+        float alertLevel = searchDistance > searchStartDistance * 1.25 ? 0f :
+                           searchDistance > searchStartDistance * 1 ? 0.25f :
+                           searchDistance > searchStartDistance * 0.75 ? 0.5f :
+                           searchDistance > searchStartDistance * 0.5 ? 0.75f :
+                           searchDistance > searchStartDistance * 0.25 ? 4 : 1f;
+        
+        return alertLevel;
     }
 
     void MoveToPlayer(float noise)

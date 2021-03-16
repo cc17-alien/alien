@@ -24,16 +24,12 @@ public class GlitchEffect : MonoBehaviour
 	public float intensity;
 
 	[Range(0, 1)]
-	public float flipIntensity;
+	private float flipIntensity;
 
 	[Range(0, 1)]
-	public float colorIntensity;
+	private float colorIntensity;
 
-	private float _glitchup;
-	private float _glitchdown;
 	private float flicker;
-	private float _glitchupTime = 0.05f;
-	private float _glitchdownTime = 0.05f;
 	private float _flickerTime = 0.5f;
 	private Material _material;
 
@@ -42,13 +38,36 @@ public class GlitchEffect : MonoBehaviour
 		_material = new Material(Shader);
 	}
 
+    float FindClosestAlien(GameObject[] alienObjects)
+    {
+        float closestAlienProximity = 0;
+
+        foreach (GameObject alien in alienObjects)
+        {
+            float alienProximity = alien.GetComponent<alienMovement>().ProximityIndicator();
+
+            if (alienProximity > closestAlienProximity)
+            {
+                closestAlienProximity = alienProximity;
+            }
+        }
+
+        return closestAlienProximity;
+    }
+
 	// Called by camera to apply image effect
 	void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
+		GameObject[] alienObjects = GameObject.FindGameObjectsWithTag("Alien");
+        float proximity = FindClosestAlien(alienObjects);
+        colorIntensity = proximity;
+        flipIntensity = proximity;
+
 		_material.SetFloat("_Intensity", intensity);
 		_material.SetFloat("_ColorIntensity", colorIntensity);
 		_material.SetTexture("_DispTex", displacementMap);
 
+        // set flicker and colour
 		flicker += Time.deltaTime * colorIntensity;
 		if (flicker > _flickerTime)
 		{
@@ -61,33 +80,16 @@ public class GlitchEffect : MonoBehaviour
 		if (colorIntensity == 0)
 			_material.SetFloat("filterRadius", 0);
 
-		_glitchup += Time.deltaTime * flipIntensity;
-		if (_glitchup > _glitchupTime)
-		{
-			if (Random.value < 0.1f * flipIntensity)
-				_material.SetFloat("flip_up", Random.Range(0, 1f) * flipIntensity);
-			else
-				_material.SetFloat("flip_up", 0);
-
-			_glitchup = 0;
-			_glitchupTime = Random.value / 10f;
-		}
+        // do the glitch
+		if (Random.value < 0.1f * flipIntensity)
+			_material.SetFloat("flip_up", Random.Range(0, 1f) * flipIntensity);
+		else
+			_material.SetFloat("flip_up", 0);
 
 		if (flipIntensity == 0)
 			_material.SetFloat("flip_up", 0);
 
-		_glitchdown += Time.deltaTime * flipIntensity;
-		if (_glitchdown > _glitchdownTime)
-		{
-			if (Random.value < 0.1f * flipIntensity)
-				_material.SetFloat("flip_down", 1 - Random.Range(0, 1f) * flipIntensity);
-			else
-				_material.SetFloat("flip_down", 1);
-
-			_glitchdown = 0;
-			_glitchdownTime = Random.value / 10f;
-		}
-
+        // set flip
 		if (flipIntensity == 0)
 			_material.SetFloat("flip_down", 1);
 

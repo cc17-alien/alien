@@ -645,6 +645,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441996818}
   m_CullTransparentMesh: 0
+--- !u!1 &456309718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6308803759177605737, guid: 0562c7f19f6f49845a603ceee05e99c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1279072912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &456309720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456309718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009bfe34044f7839e8a4e71fb7f7ab10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displacementMap: {fileID: 0}
+  Shader: {fileID: 4800000, guid: 3f173416faca76b9bba83028f8fec8e7, type: 3}
+  intensity: 0
 --- !u!1 &477707209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,6 +2819,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3404829931912682446, guid: 4579da7635d10452ab2b7b6b32f4daad,
+        type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3404829931912682447, guid: 4579da7635d10452ab2b7b6b32f4daad,
         type: 3}
       propertyPath: m_RootOrder
