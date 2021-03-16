@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YouAreEaten.unity
     guid: d82b102afe4b140929db8f811b9721b9
+  - enabled: 1
+    path: Assets/Scenes/FriendsWait.unity
+    guid: d72c9ce598eac4e4eae5467c59b354d9
   m_configObjects: {}

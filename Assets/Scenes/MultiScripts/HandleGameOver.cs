@@ -20,6 +20,7 @@ public class HandleGameOver : MonoBehaviourPunCallbacks
 
     public void PlayAgain() {
         //WIP = will need to find way to know host/nonhost player
+        Debug.Log("PLAY AGAIN CALLED");
         SceneManager.LoadScene("HostWaits");
     }
 

@@ -7,7 +7,7 @@ using Mapbox.Utils;
 using Photon.Pun;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class InitializeMultiplayerMap : MonoBehaviour
+public class InitializeMultiplayerMap : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     AbstractMap _map;
@@ -27,22 +27,32 @@ public class InitializeMultiplayerMap : MonoBehaviour
     void OnLocationUpdated(Mapbox.Unity.Location.Location location) {
         _locationProvider.OnLocationUpdated -= OnLocationUpdated;
 
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 1) {
-            _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
-
-            Hashtable newRoomSettings = new Hashtable();
-            newRoomSettings.Add("mapLat", location.LatitudeLongitude.x);
-            newRoomSettings.Add("mapLong", location.LatitudeLongitude.y);
-
-            PhotonNetwork.CurrentRoom.SetCustomProperties(newRoomSettings);
-        } else {
+        if (PhotonNetwork.IsMasterClient) {
             Hashtable roomSettings = PhotonNetwork.CurrentRoom.CustomProperties;
 
-            Vector2d latLong = new Vector2d(
+            _map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
+
+            //Hashtable newRoomSettings = new Hashtable();
+            roomSettings.Add("mapLat", location.LatitudeLongitude.x);
+            roomSettings.Add("mapLong", location.LatitudeLongitude.y);
+
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomSettings);
+        } else {
+            // Hashtable roomSettings = PhotonNetwork.CurrentRoom.CustomProperties;
+
+            // Vector2d latLong = new Vector2d(
+            //     (double) roomSettings["mapLat"],
+            //     (double) roomSettings["mapLong"] 
+            // );
+            // _map.Initialize(latLong, _map.AbsoluteZoom);
+        }
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable roomSettings) {
+        Vector2d latLong = new Vector2d(
                 (double) roomSettings["mapLat"],
                 (double) roomSettings["mapLong"] 
             );
             _map.Initialize(latLong, _map.AbsoluteZoom);
-        }
     }
 }

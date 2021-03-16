@@ -31,6 +31,7 @@ public class HandleJoinGame : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom() {
+        Debug.Log("Joining FriendsWait");
         SceneManager.LoadScene("FriendsWait");
     }
 }

@@ -6,8 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class CreateNewGame : MonoBehaviour
+public class CreateNewGame : MonoBehaviourPunCallbacks
 {
 
     public Text roomID;
@@ -39,5 +40,12 @@ public class CreateNewGame : MonoBehaviour
         }
 
         roomID.text = newID;
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable roomSettings) {
+        bool readyToJoin = (bool) roomSettings["readyToJoin"];
+        if (readyToJoin && !PhotonNetwork.IsMasterClient) {
+            PhotonNetwork.LoadLevel("Multiplayer");
+        }
     }
 }
