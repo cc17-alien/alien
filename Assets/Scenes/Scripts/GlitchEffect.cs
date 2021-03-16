@@ -9,6 +9,7 @@ to make derivative works
 to make commercial use of the work
 */
 
+using System.Collections;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -32,9 +33,13 @@ public class GlitchEffect : MonoBehaviour
 	private float flicker;
 	private float _flickerTime = 0.5f;
 	private Material _material;
+    private float proximity = 0;
 
 	void Start()
 	{
+        Vibration.Init();
+        Debug.Log(proximity);
+        StartCoroutine(VibrateWithProximity());
 		_material = new Material(Shader);
 	}
 
@@ -55,11 +60,24 @@ public class GlitchEffect : MonoBehaviour
         return closestAlienProximity;
     }
 
+    IEnumerator VibrateWithProximity()
+    {
+        if (proximity == 0f) Vibration.Cancel();
+        if (proximity == 0.25f) Vibration.VibratePop();
+        if (proximity == 0.5f) Vibration.VibrateNope();
+        if (proximity == 0.75f) Vibration.Vibrate();
+        if (proximity >= 1f) Vibration.VibratePeek();
+
+        yield return new WaitForSeconds(1);
+
+        StartCoroutine(VibrateWithProximity());
+    }
+
 	// Called by camera to apply image effect
 	void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		GameObject[] alienObjects = GameObject.FindGameObjectsWithTag("Alien");
-        float proximity = FindClosestAlien(alienObjects);
+        proximity = FindClosestAlien(alienObjects);
         colorIntensity = proximity;
         flipIntensity = proximity;
 
