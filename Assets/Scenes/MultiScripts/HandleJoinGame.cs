@@ -26,8 +26,7 @@ public class HandleJoinGame : MonoBehaviourPunCallbacks
         roomName = value;
     }
 
-    public void JoinOrCreatePrivateRoom() {
-        //PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions(), null);
+    public void JoinPrivateRoom() {
         PhotonNetwork.JoinRoom(roomName);
     }
 

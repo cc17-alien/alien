@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject[] arrayOfPlayerObjects = GameObject.FindGameObjectsWithTag("Player");
 
          if (arrayOfPlayerObjects.Length == 0) {
+             Debug.Log("No Players Remaining");
              SceneManager.LoadScene("AllEaten");
          }
 

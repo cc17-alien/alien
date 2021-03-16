@@ -7,7 +7,10 @@ using Photon.Pun;
 public class ManageScenes : MonoBehaviour
 {
     public void CreateGame() {
-      //this will be CreateGame later
+      SceneManager.LoadScene("CreateGame");
+    }
+
+    public void WaitAsHost() {
       SceneManager.LoadScene("HostWaits");
     }
 

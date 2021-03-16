@@ -424,7 +424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'ID: V5GH4'
+  m_Text: 
 --- !u!222 &859651385
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -443,8 +443,8 @@ GameObject:
   m_Component:
   - component: {fileID: 983580282}
   - component: {fileID: 983580284}
-  - component: {fileID: 983580283}
   - component: {fileID: 983580285}
+  - component: {fileID: 983580283}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -478,6 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d315486a09f864be98f0b19ff3f3a5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomID: {fileID: 859651384}
 --- !u!114 &983580284
 MonoBehaviour:
   m_ObjectHideFlags: 0

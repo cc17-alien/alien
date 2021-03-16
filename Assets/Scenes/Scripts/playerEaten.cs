@@ -22,8 +22,8 @@ public class playerEaten : MonoBehaviour
         if (collision.gameObject.tag == "Alien")
         {
             gameObject.tag = "Eaten";
-            //Go to YouAreEaten scene
-            //SceneManager.LoadScene(4);
+            Debug.Log("Collision Entered");
+            SceneManager.LoadScene("YouAreEaten");
         }
     }
 }

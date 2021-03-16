@@ -10,6 +10,10 @@ public class WaitingManager : MonoBehaviourPunCallbacks
     int numOfPlayers;
     public Text numOfPlayersText;
 
+    void Awake() {
+        updatePlayers();
+    }
+
     void updatePlayers() {
         numOfPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         numOfPlayersText.text = numOfPlayers.ToString();
