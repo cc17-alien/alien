@@ -39,20 +39,20 @@ public class IndicatorX : MonoBehaviour
         //(0, 0) ~ (1, 1) is within the camera view
         Vector3 objPosition = MainCam.WorldToViewportPoint(Objective.position);
 
-        if (objPosition.x > 1)  // Objective is on the right
+        if (objPosition.x > 0.93)  // Objective is on the right
         {
             //make self yellow
             GetComponent<Image>().color = isComplete ? completedColor : color;
 
-            x = (Screen.width - spriteWidth) / 2;
+            x = (Screen.width - spriteWidth) / 2 - (Screen.width * 7 / 100);
             SetY(objPosition);
         }
-        else if (objPosition.x < 0)  // Objective is on the left, 
+        else if (objPosition.x < 0.07)  // Objective is on the left, 
         {
             //make self yellow
             GetComponent<Image>().color = isComplete ? completedColor : color;
 
-            x = -(Screen.width - spriteWidth) / 2;
+            x = -(Screen.width - spriteWidth) / 2 + (Screen.width * 7 / 100);
             SetY(objPosition);
 
         }
@@ -67,13 +67,13 @@ public class IndicatorX : MonoBehaviour
 
     void SetY(Vector3 objPosition)
     {
-        if (objPosition.y > 1)  // above top of screen
+        if (objPosition.y > 0.95)  // above top of screen
         {
-            y = Screen.height / 2;
+            y = Screen.height / 2 - (Screen.height * 5 / 100);
         }
-        else if (objPosition.y < 0) // below bottom of screen
+        else if (objPosition.y < 0.56) // below bottom of screen
         {
-            y = -Screen.height / 2;
+            y = Screen.height * 6 / 100;
         }
         else //between the height of the screen
         {
