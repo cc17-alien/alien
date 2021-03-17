@@ -39,13 +39,15 @@ public class CreateNewGame : MonoBehaviourPunCallbacks
             newID += glyphs[UnityEngine.Random.Range(0, glyphs.Length)];
         }
 
-        roomID.text = newID;
+        roomID.text = "a";
     }
 
-    public override void OnRoomPropertiesUpdate(Hashtable roomSettings) {
-        bool readyToJoin = (bool) roomSettings["readyToJoin"];
-        if (readyToJoin && !PhotonNetwork.IsMasterClient) {
-            PhotonNetwork.LoadLevel("Multiplayer");
+    public override void OnRoomPropertiesUpdate(Hashtable propsThatChanged) {
+        if (propsThatChanged.ContainsKey("readyToJoin")) {
+            bool readyToJoin = (bool) propsThatChanged["readyToJoin"];
+            if (readyToJoin && !PhotonNetwork.IsMasterClient) {
+                PhotonNetwork.LoadLevel("Multiplayer");
+            }
         }
     }
 }

@@ -32,6 +32,7 @@ public class PositionProvider : MonoBehaviourPun
             map = LocationProviderFactory.Instance.mapManager;
 
             if (map != null) {
+                Debug.Log("Updating position...");
                 transform.localPosition = map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude);
             }           
         }
