@@ -24,11 +24,20 @@ public class PositionProvider : MonoBehaviourPun
     Vector3 _targetPos;
 
     void Start() {
-        LocationProviderFactory.Instance.mapManager.OnInitialized += () => _isInitialized = true;
+        //LocationProviderFactory.Instance.mapManager.OnInitialized += WillRunWhenEventFires;
+        if (photonView.IsMine) {
+            Debug.Log("PositionProivderStarted");
+        }
+        
     }
 
+    // void WillRunWhenEventFires() {
+    //     Debug.Log("EVENT FIRED");
+    //     _isInitialized = true;
+    // }
+
     void LateUpdate() {
-        if (_isInitialized && photonView.IsMine) {
+        if (photonView.IsMine) {
             map = LocationProviderFactory.Instance.mapManager;
 
             if (map != null) {
@@ -36,6 +45,8 @@ public class PositionProvider : MonoBehaviourPun
                 Debug.Log("Updating position...");
 
                 transform.localPosition = map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude);
+            } else {
+                Debug.Log("Map is null");
             }           
         }
     }

@@ -49,12 +49,14 @@ public class InitializeMultiplayerMap : MonoBehaviourPunCallbacks
     }
 
     public override void OnRoomPropertiesUpdate(Hashtable roomSettings) {
-        if (roomSettings.ContainsKey("mapLat") && roomSettings.ContainsKey("mapLong")) {
-            Vector2d latLong = new Vector2d(
-                    (double) roomSettings["mapLat"],
-                    (double) roomSettings["mapLong"] 
-                );
-                _map.Initialize(latLong, _map.AbsoluteZoom);
+        if (!PhotonNetwork.IsMasterClient) {
+            if (roomSettings.ContainsKey("mapLat") && roomSettings.ContainsKey("mapLong")) {
+                Vector2d latLong = new Vector2d(
+                        (double) roomSettings["mapLat"],
+                        (double) roomSettings["mapLong"] 
+                    );
+                    _map.Initialize(latLong, _map.AbsoluteZoom);
+            }
         }
     }
 }
