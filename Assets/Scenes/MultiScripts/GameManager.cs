@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -20,15 +21,18 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         GameObject[] arrayOfPlayerObjects = GameObject.FindGameObjectsWithTag("Player");
 
-         if (arrayOfPlayerObjects.Length == 0) {
-             SceneManager.LoadScene(2);
-         }
+        if (arrayOfPlayerObjects.Length == 0) {
+            Debug.Log("No Players Remaining");
+            setEndingScene("AllEaten");
+            //SceneManager.LoadScene("AllEaten");
+        }
 
          //Congratulations
         int objectiveNumber = GameObject.FindGameObjectsWithTag("Objective").Length;
                 
         if(objectiveNumber == 0){
-            SceneManager.LoadScene(3); 
+            setEndingScene("Congratulations");
+            //SceneManager.LoadScene("Congratulations"); 
         }
     }
 
@@ -41,11 +45,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         );
     }
 
+    void setEndingScene(string sceneName) {
+        Hashtable roomSettings = PhotonNetwork.CurrentRoom.CustomProperties;
+
+        roomSettings.Add("sceneName", sceneName);
+
+        PhotonNetwork.CurrentRoom.SetCustomProperties(roomSettings);
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer) {
         Debug.LogFormat("{0} Players Connected.", PhotonNetwork.CurrentRoom.PlayerCount);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer) {
         Debug.LogFormat("{0} Players Connected.", PhotonNetwork.CurrentRoom.PlayerCount);
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propsThatChanged) {
+        // string sceneName = (string) propsThatChanged["sceneName"];
+        // PhotonNetwork.LoadLevel(sceneName);
     }
 }

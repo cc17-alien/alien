@@ -232,8 +232,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 36}
-  m_SizeDelta: {x: 505.15784, y: 104.09708}
+  m_AnchoredPosition: {x: 7, y: 52.049}
+  m_SizeDelta: {x: 591.47943, y: 104.09708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &703205042
 MonoBehaviour:
@@ -267,7 +267,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You Are Eaten
+  m_Text: You Were All Eaten
 --- !u!222 &703205043
 CanvasRenderer:
   m_ObjectHideFlags: 0

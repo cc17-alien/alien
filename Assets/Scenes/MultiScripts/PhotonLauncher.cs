@@ -10,7 +10,7 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
+        //PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     void Start()
@@ -29,9 +29,9 @@ public class PhotonLauncher : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom() {
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 1) {
-            PhotonNetwork.LoadLevel(1);
-        }
+        // if (PhotonNetwork.CurrentRoom.PlayerCount == 1) {
+        //     PhotonNetwork.LoadLevel(1);
+        // }
     }
 
     #endregion

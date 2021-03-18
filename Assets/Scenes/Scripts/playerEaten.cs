@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class playerEaten : MonoBehaviour
+public class playerEaten : MonoBehaviourPun
 {
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,11 @@ public class playerEaten : MonoBehaviour
         if (collision.gameObject.tag == "Alien")
         {
             gameObject.tag = "Eaten";
-            //Go to YouAreEaten scene
-            SceneManager.LoadScene(4);
+            Debug.Log("Collision Entered");
+
+            if (photonView.IsMine) {
+                SceneManager.LoadScene("YouAreEaten");
+            }
         }
     }
 }
