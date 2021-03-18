@@ -2398,12 +2398,12 @@ MonoBehaviour:
   _initializeOnStart: 0
   _imagery:
     _layerProperty:
-      sourceType: 0
+      sourceType: 6
       sourceOptions:
         isActive: 1
         layerSource:
           Name: Streets
-          Id: mapbox://styles/mapbox/streets-v10
+          Id: mapbox://styles/yoko20209/ckma79og301oe17ofaxvu44oy
           Modified: 
           UserName: 
       rasterOptions:
