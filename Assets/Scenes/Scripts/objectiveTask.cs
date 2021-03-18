@@ -7,6 +7,8 @@ public class objectiveTask : MonoBehaviour
 [Header("Bellow should be assigned to it's own child")]
     public GameObject OpenTaskButton;
     public GameObject Task;
+    public GameObject HoldButton;
+    public GameObject ExitTaskButton;
 
     void Start()
     {
@@ -19,11 +21,13 @@ public class objectiveTask : MonoBehaviour
         if (collidedObj.gameObject.tag == "Player")
         {
             OpenTaskButton.SetActive(true);
-            Task.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
+            Task.transform.parent.parent.gameObject.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
         }else if(collidedObj.gameObject.tag == "Eaten")
         {
             OpenTaskButton.SetActive(false);
             Task.SetActive(false);
+            HoldButton.SetActive(false);
+            ExitTaskButton.SetActive(false);
         }
     }
 
@@ -33,6 +37,8 @@ public class objectiveTask : MonoBehaviour
         {
             OpenTaskButton.SetActive(false);    
             Task.SetActive(false);
+            HoldButton.SetActive(false);
+            ExitTaskButton.SetActive(false);
         }
     }
 
