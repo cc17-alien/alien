@@ -447,7 +447,7 @@ MonoBehaviour:
   ObjectiveSprite: {fileID: 8006699627487472629}
   CompletionSprite: {fileID: 21300000, guid: 262dda4a969e5224e978870fe45abc7b, type: 3}
   ObjectiveLamp: {fileID: 6488571037644380849}
-  CompletionLampSprite: {fileID: 21300000, guid: 8e873a31356db284ba518b0b8542a742,
+  CompletionLampSprite: {fileID: 21300000, guid: 1bed4d91478ce844a93b512f21b2f21c,
     type: 3}
   Gauge1: {fileID: 2440807321604818968}
   Gauge2: {fileID: 4721177210916763140}
@@ -711,13 +711,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b551e6285d5cd85429096cae6a5465dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e873a31356db284ba518b0b8542a742, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
