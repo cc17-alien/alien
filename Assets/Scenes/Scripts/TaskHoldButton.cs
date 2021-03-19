@@ -39,7 +39,6 @@ public class TaskHoldButton : MonoBehaviour
         if (countDown > 0)
         {
             yield return new WaitForSeconds(1);
-            Debug.Log(countDown);
             InteractingPlayer.GetComponent<playerNoise>().noise += noiseIncreation = 10;
 
 
