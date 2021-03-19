@@ -8,20 +8,19 @@ public class playerNoise : MonoBehaviour
     // Start is called before the first frame update
     [HideInInspector]
     public float noise;
+    public float speed;
+    public float lastMovement;
 
     public float speedThresholdVeryLow;
     public float speedThresholdLow;
     public float speedThresholdMed;
     public float speedThresholdHigh;
     public float speedThresholdVeryHigh;
-
     private Vector3 lastPosition;
-    private float lastMovement = 0;
 
     void Start()
     {
-        lastPosition = transform.position;
-        StartCoroutine(AdjustNoise());
+        StartCoroutine(AdjustNoise(true));
     }
 
     // Update is called once per frame
@@ -46,13 +45,20 @@ public class playerNoise : MonoBehaviour
 
         Vector3 coordinates = transform.position;
         float distance = Vector3.Distance(lastPosition, coordinates);
+        // Debug.Log(distance + " | " + lastPosition + " | " + coordinates);
         lastPosition = coordinates;
 
         return distance;
     }
 
-    IEnumerator AdjustNoise()
+    IEnumerator AdjustNoise(bool start = false)
     {
+        if (start)
+        {
+            yield return new WaitForSeconds(9);
+            lastPosition = transform.position;
+        }
+
         yield return new WaitForSeconds(1);
         
         
