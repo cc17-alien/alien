@@ -5,29 +5,29 @@ using UnityEngine;
 public class objectiveTask : MonoBehaviour
 {
 [Header("Bellow should be assigned to it's own child")]
-    public GameObject OpenTaskButton;
+
     public GameObject Task;
     public GameObject HoldButton;
-    public GameObject ExitTaskButton;
+    public GameObject ObjectiveLamp;
 
     void Start()
     {
-        OpenTaskButton.SetActive(false);
         Task.SetActive(false);
+        ObjectiveLamp.SetActive(false);
     }
 
     void OnTriggerStay(Collider collidedObj)
     {
         if (collidedObj.gameObject.tag == "Player")
         {
-            OpenTaskButton.SetActive(true);
+            ObjectiveLamp.SetActive(true);
+            HoldButton.SetActive(true);
             Task.transform.parent.parent.gameObject.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
         }else if(collidedObj.gameObject.tag == "Eaten")
         {
-            OpenTaskButton.SetActive(false);
             Task.SetActive(false);
             HoldButton.SetActive(false);
-            ExitTaskButton.SetActive(false);
+            ObjectiveLamp.SetActive(false);
         }
     }
 
@@ -35,10 +35,9 @@ public class objectiveTask : MonoBehaviour
     {
         if (collidedObj.gameObject.tag == "Player")
         {
-            OpenTaskButton.SetActive(false);    
             Task.SetActive(false);
             HoldButton.SetActive(false);
-            ExitTaskButton.SetActive(false);
+            ObjectiveLamp.SetActive(false);
         }
     }
 
