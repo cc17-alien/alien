@@ -6,13 +6,13 @@ public class objectiveTask : MonoBehaviour
 {
 [Header("Bellow should be assigned to it's own child")]
 
-    public GameObject Task;
+    public GameObject GaugePannel;
     public GameObject HoldButton;
     public GameObject ObjectiveLamp;
 
     void Start()
     {
-        Task.SetActive(false);
+        GaugePannel.SetActive(false);
         ObjectiveLamp.SetActive(false);
     }
 
@@ -22,10 +22,10 @@ public class objectiveTask : MonoBehaviour
         {
             ObjectiveLamp.SetActive(true);
             HoldButton.SetActive(true);
-            Task.transform.parent.parent.gameObject.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
+            GaugePannel.transform.parent.parent.gameObject.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
         }else if(collidedObj.gameObject.tag == "Eaten")
         {
-            Task.SetActive(false);
+            GaugePannel.SetActive(false);
             HoldButton.SetActive(false);
             ObjectiveLamp.SetActive(false);
         }
@@ -35,7 +35,7 @@ public class objectiveTask : MonoBehaviour
     {
         if (collidedObj.gameObject.tag == "Player")
         {
-            Task.SetActive(false);
+            GaugePannel.SetActive(false);
             HoldButton.SetActive(false);
             ObjectiveLamp.SetActive(false);
         }

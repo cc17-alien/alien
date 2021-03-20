@@ -13,6 +13,7 @@ public class TaskHoldButton : MonoBehaviour
     public GameObject Objective;
     public GameObject ObjectiveSprite;
     public Sprite CompletionSprite;
+    
     public GameObject ObjectiveLamp;
     public Sprite CompletionLampSprite;
 
@@ -21,7 +22,7 @@ public class TaskHoldButton : MonoBehaviour
     public GameObject Gauge3;
     public GameObject Gauge4;
     public GameObject Gauge5;
-    public GameObject Task;
+    public GameObject GaugePannel;
 
     [HideInInspector]
     public GameObject InteractingPlayer;
@@ -65,7 +66,7 @@ public class TaskHoldButton : MonoBehaviour
         else if (countDown <= 0)
         {
             yield return new WaitForSeconds(1);
-            Task.SetActive(false);
+            GaugePannel.SetActive(false);
             ObjectiveSprite.GetComponent<SpriteRenderer>().sprite = CompletionSprite;
             Objective.tag = "TaskComplete";
             ObjectiveLamp.GetComponent<Image>().sprite = CompletionLampSprite;
