@@ -43,8 +43,8 @@ public class OnlineMotionDetector : MonoBehaviourPun, IPunObservable
     }
     IEnumerator IncreasePlayerNoise()
     {
-        yield return new WaitForSeconds(1);
         GetComponent<playerNoise>().noise += noiseIncreation;
+        yield return new WaitForSeconds(1);
         StartCoroutine(IncreasePlayerNoise());
     }
 
