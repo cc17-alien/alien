@@ -32,6 +32,7 @@ public class IndicatorY : MonoBehaviour
         if (isComplete)
         {
             GetComponent<RectTransform>().sizeDelta = new Vector2(4, 3);
+            transform.SetAsLastSibling();
         }
 
 
