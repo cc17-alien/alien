@@ -8,7 +8,9 @@ public class playerNoise : MonoBehaviour
     // Start is called before the first frame update
     [HideInInspector]
     public float noise;
+    [HideInInspector]
     public float speed;
+    [HideInInspector]
     public float lastMovement;
 
     public float speedThresholdVeryLow;
