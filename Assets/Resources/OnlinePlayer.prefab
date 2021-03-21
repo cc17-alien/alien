@@ -1018,6 +1018,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noise: 0
+  speedThresholdVeryLow: 8
+  speedThresholdLow: 15
+  speedThresholdMed: 2
+  speedThresholdHigh: 27
+  speedThresholdVeryHigh: 34
 --- !u!114 &6811543111688258893
 MonoBehaviour:
   m_ObjectHideFlags: 0

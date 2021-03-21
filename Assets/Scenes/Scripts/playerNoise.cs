@@ -6,7 +6,15 @@ using UnityEngine;
 public class playerNoise : MonoBehaviour
 {
     // Start is called before the first frame update
+    [HideInInspector]
     public float noise;
+
+    public float speedThresholdVeryLow;
+    public float speedThresholdLow;
+    public float speedThresholdMed;
+    public float speedThresholdHigh;
+    public float speedThresholdVeryHigh;
+
     private Vector3 lastPosition;
     private float lastMovement = 0;
 
@@ -50,11 +58,11 @@ public class playerNoise : MonoBehaviour
         float tilt = GetTilt();
         float speed = GetDistance();
 
-        int movement = speed <= 0.5 ? 0 :
-                       speed <= 2.5 ? 5 :
-                       speed <= 5.0 ? 10 :
-                       speed <= 8.0 ? 20 :
-                       speed <= 12.0 ? 50 : 100;
+        int movement = speed <= (speedThresholdVeryLow * 0.01) ? 0 :
+                       speed <= (speedThresholdLow * 0.01) ? 5 :
+                       speed <= (speedThresholdMed * 0.01) ? 10 :
+                       speed <= (speedThresholdHigh * 0.01) ? 20 :
+                       speed <= (speedThresholdVeryHigh * 0.01) ? 50 : 100;
 
         noise = (noise - lastMovement) + Math.Max(movement, lastMovement);
 
