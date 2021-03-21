@@ -439,26 +439,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155637667}
   m_CullTransparentMesh: 0
---- !u!114 &160788979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2279241676060391217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ca09799a564f0458e3b220d4c6dc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 2177489409005493389}
-  _locationStrings:
-  - 60.1924999, 24.9709155
-  - 60.1903401,24.9665094
-  - 60.1924239, 24.9670392
-  _spawnScale: 2
-  _markerPrefab: {fileID: 4977569638458769192, guid: 073231efd49c6be4faa5a22d5d6c54f4,
-    type: 3}
 --- !u!1 &327710079
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +469,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4694477319442772596, guid: 7b449d0b717cc454f83e2fce9886562e,
+    type: 3}
+  objectivePrefab: {fileID: 1134378146791593512, guid: 8d10800f066544640b6f283fdb5656a5,
     type: 3}
 --- !u!4 &327710081
 Transform:
@@ -2530,7 +2512,6 @@ GameObject:
   - component: {fileID: 2282706848352939231}
   - component: {fileID: 2177489409005493389}
   - component: {fileID: 2279241676060391218}
-  - component: {fileID: 160788979}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -3016,7 +2997,7 @@ PrefabInstance:
     - target: {fileID: 3404829931912682483, guid: 4579da7635d10452ab2b7b6b32f4daad,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4579da7635d10452ab2b7b6b32f4daad, type: 3}

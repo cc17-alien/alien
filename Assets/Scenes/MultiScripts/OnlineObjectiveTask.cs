@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class objectiveTask : MonoBehaviourPun
+public class OnlineObjectiveTask : MonoBehaviour
 {
 [Header("Bellow should be assigned to it's own child")]
 
@@ -24,13 +23,7 @@ public class objectiveTask : MonoBehaviourPun
             Debug.Log(collidedObj);
             ObjectiveLamp.SetActive(true);
             HoldButton.SetActive(true);
-
-            if (PhotonNetwork.IsConnected) {
-                GaugePannel.transform.parent.parent.gameObject.GetComponentInChildren<OnlineTaskHold>().InteractingPlayer = collidedObj.gameObject;
-            } else {
-                GaugePannel.transform.parent.parent.gameObject.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
-            }
-            
+            GaugePannel.transform.parent.parent.gameObject.GetComponentInChildren<TaskHoldButton>().InteractingPlayer = collidedObj.gameObject;
         }else if(collidedObj.gameObject.tag == "Eaten")
         {
             GaugePannel.SetActive(false);

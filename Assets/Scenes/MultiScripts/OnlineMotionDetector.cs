@@ -5,7 +5,9 @@ using Photon.Pun;
 
 public class OnlineMotionDetector : MonoBehaviourPun, IPunObservable
 {
-    public GameObject playerCanvas;
+    public GameObject playerDot;
+
+    public GameObject UI;
 
     private Camera mainCamera;
     
@@ -18,7 +20,8 @@ public class OnlineMotionDetector : MonoBehaviourPun, IPunObservable
 
     void EnableCanvas() {
         if (PhotonNetwork.IsConnected && photonView.IsMine) {
-            playerCanvas.SetActive(true);
+            playerDot.SetActive(true);
+            UI.SetActive(true);
         }
     }
 

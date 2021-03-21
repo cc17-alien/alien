@@ -173,7 +173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7806123812939286369
 Transform:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 5985882624740691721}
   - component: {fileID: 1736283185388807926}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -710,12 +710,12 @@ GameObject:
   - component: {fileID: 465407803510583998}
   - component: {fileID: 3351829248086167065}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PlayerDot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6073615346261210728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1059,7 +1059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f5057f3d35cf44e96f3576594bbf7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCanvas: {fileID: 1215278648185912378}
+  playerDot: {fileID: 4092490208908177211}
+  UI: {fileID: 1215278648185912378}
   noiseIncreation: 5
 --- !u!114 &7994805846371727848
 MonoBehaviour:
