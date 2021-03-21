@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class TaskHoldButton : MonoBehaviour
+public class OnlineTaskHold : MonoBehaviourPun
 {
 
     public int countDown;
@@ -24,6 +25,8 @@ public class TaskHoldButton : MonoBehaviour
     public GameObject Gauge5;
     public GameObject GaugePannel;
 
+    public GameObject HoldButton;
+
     [HideInInspector]
     public GameObject InteractingPlayer;
 
@@ -35,9 +38,21 @@ public class TaskHoldButton : MonoBehaviour
         StartCoroutine(CountDown());
     }
 
+    [PunRPC]
+    void CompleteTask() {
+        GaugePannel.SetActive(false);
+        ObjectiveSprite.GetComponent<SpriteRenderer>().sprite = CompletionSprite;
+        Objective.tag = "TaskComplete";
+        ObjectiveLamp.GetComponent<Image>().sprite = CompletionLampSprite;
+
+        //setting IndicatorX's & Y's "isComplete" to true (to change it's color and size);
+        GetComponentInChildren<IndicatorX>().isComplete = true;
+        GetComponentInChildren<IndicatorY>().isComplete = true;
+    }
+
     IEnumerator CountDown()
     {
-        if (countDown > 0)
+        if (countDown > 0 && HoldButton.activeSelf)
         {
             yield return new WaitForSeconds(1);
             InteractingPlayer.GetComponent<playerNoise>().noise += noiseIncreation = 10;
@@ -66,17 +81,11 @@ public class TaskHoldButton : MonoBehaviour
         else if (countDown <= 0)
         {
             yield return new WaitForSeconds(1);
-            GaugePannel.SetActive(false);
-            ObjectiveSprite.GetComponent<SpriteRenderer>().sprite = CompletionSprite;
-            Objective.tag = "TaskComplete";
-            ObjectiveLamp.GetComponent<Image>().sprite = CompletionLampSprite;
-
-            //setting IndicatorX's & Y's "isComplete" to true (to change it's color and size);
-            transform.parent.parent.gameObject.GetComponentInChildren<IndicatorX>().isComplete = true;
-            transform.parent.parent.gameObject.GetComponentInChildren<IndicatorY>().isComplete = true;
+            if (PhotonNetwork.IsConnected) {
+                photonView.RPC("CompleteTask", RpcTarget.All);
+            } else {
+                CompleteTask();
+            }
         }
-
     }
-
-
 }

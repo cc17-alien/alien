@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -10,10 +9,17 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public GameObject playerPrefab;
+    public GameObject objectivePrefab;
     GameObject playerInstance;
+
+    private Vector3[] objectiveLocations = {
+        new Vector3(-5f, 0f, 0f),
+        new Vector3(-20f, 0f, -5f),
+    };
 
     void Start()
     {
+        SpawnObjectives();
         SpawnPlayer();
     }
 
@@ -24,15 +30,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (arrayOfPlayerObjects.Length == 0) {
             Debug.Log("No Players Remaining");
             setEndingScene("AllEaten");
-            //SceneManager.LoadScene("AllEaten");
+            return;
         }
 
-         //Congratulations
-        int objectiveNumber = GameObject.FindGameObjectsWithTag("Objective").Length;
+        int objectiveNumber = GameObject.FindGameObjectsWithTag("TaskComplete").Length;
                 
-        if(objectiveNumber == 0){
+        if(objectiveNumber == objectiveLocations.Length){
             setEndingScene("Congratulations");
-            //SceneManager.LoadScene("Congratulations"); 
         }
     }
 
@@ -45,12 +49,28 @@ public class GameManager : MonoBehaviourPunCallbacks
         );
     }
 
+    void SpawnObjectives() {
+        if (PhotonNetwork.IsMasterClient) {
+            foreach (Vector3 location in objectiveLocations) {
+                PhotonNetwork.Instantiate(
+                    this.objectivePrefab.name,
+                    location,
+                    Quaternion.identity,
+                    0
+                );
+            }
+        }
+
+    }
+
     void setEndingScene(string sceneName) {
         Hashtable roomSettings = PhotonNetwork.CurrentRoom.CustomProperties;
-
-        roomSettings.Add("sceneName", sceneName);
-
-        PhotonNetwork.CurrentRoom.SetCustomProperties(roomSettings);
+        if (!roomSettings.ContainsKey("sceneName")) {
+            roomSettings.Add("sceneName", sceneName);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomSettings);
+        } else {
+            Debug.Log(roomSettings["sceneName"]);
+        }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer) {
@@ -62,7 +82,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     public override void OnRoomPropertiesUpdate(Hashtable propsThatChanged) {
-        // string sceneName = (string) propsThatChanged["sceneName"];
-        // PhotonNetwork.LoadLevel(sceneName);
+        if (propsThatChanged.ContainsKey("sceneName")) {
+            string sceneName = (string) propsThatChanged["sceneName"];
+            PhotonNetwork.DestroyAll();
+            PhotonNetwork.LoadLevel(sceneName);
+        }
     }
 }

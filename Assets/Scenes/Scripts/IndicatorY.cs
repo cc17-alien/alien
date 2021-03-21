@@ -29,12 +29,12 @@ public class IndicatorY : MonoBehaviour
     void Update()
     {
         //when task is complete, change the size of indicator
-        if(isComplete)
+        if (isComplete)
         {
-            GetComponent<RectTransform>().sizeDelta = new Vector2(10, 10);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(4, 3);
         }
 
-        
+
         //this converts the Objective's position to a position reletive to the Camera view.
         //(0, 0) ~ (1, 1) is within the camera view
         Vector3 objPosition = MainCam.WorldToViewportPoint(Objective.position);
@@ -59,7 +59,7 @@ public class IndicatorY : MonoBehaviour
         else
         {
             //make self transparent
-            GetComponent<Image>().color = new Color32(0,0,0,0);
+            GetComponent<Image>().color = new Color32(0, 0, 0, 0);
         }
 
 
