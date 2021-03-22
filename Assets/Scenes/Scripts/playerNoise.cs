@@ -54,33 +54,40 @@ public class playerNoise : MonoBehaviour
     IEnumerator AdjustNoise()
     {
         yield return new WaitForSeconds(1);
+        
+        
+        if(lastPosition.y == 0){
+            float tilt = GetTilt();
+            float speed = GetDistance();
+       
 
-        float tilt = GetTilt();
-        float speed = GetDistance();
+            int movement = speed <= (speedThresholdVeryLow * 0.01) ? 0 :
+                        speed <= (speedThresholdLow * 0.01) ? 5 :
+                        speed <= (speedThresholdMed * 0.01) ? 10 :
+                        speed <= (speedThresholdHigh * 0.01) ? 20 :
+                        speed <= (speedThresholdVeryHigh * 0.01) ? 50 : 100;
 
-        int movement = speed <= (speedThresholdVeryLow * 0.01) ? 0 :
-                       speed <= (speedThresholdLow * 0.01) ? 5 :
-                       speed <= (speedThresholdMed * 0.01) ? 10 :
-                       speed <= (speedThresholdHigh * 0.01) ? 20 :
-                       speed <= (speedThresholdVeryHigh * 0.01) ? 50 : 100;
+            noise = (noise - lastMovement) + Math.Max(movement, lastMovement);
 
-        noise = (noise - lastMovement) + Math.Max(movement, lastMovement);
+            if (movement >= lastMovement)
+            {
+                lastMovement = movement;
+            }
+            else if (lastMovement >= 5)
+            {
+                lastMovement -= 5;
+            }
 
-        if (movement >= lastMovement)
-        {
-            lastMovement = movement;
+            if (tilt < 0.01 && noise > 0 && speed < 0.5)
+            {
+                float modifier = Math.Min(100 / (tilt * 10000), 10);
+                noise -= modifier;
+            }
         }
-        else if (lastMovement >= 5)
+        else
         {
-            lastMovement -= 5;
+            lastPosition = transform.position;
         }
-
-        if (tilt < 0.01 && noise > 0 && speed < 0.5)
-        {
-            float modifier = Math.Min(100 / (tilt * 10000), 10);
-            noise -= modifier;
-        }
-
         StartCoroutine(AdjustNoise());
     }
 }
