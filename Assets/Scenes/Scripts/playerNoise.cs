@@ -21,7 +21,6 @@ public class playerNoise : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
-        Debug.Log("lastPosition " + lastPosition);
         StartCoroutine(AdjustNoise());
     }
 
@@ -46,7 +45,6 @@ public class playerNoise : MonoBehaviour
     float GetDistance() {
 
         Vector3 coordinates = transform.position;
-        Debug.Log("coordinates " + coordinates);
         float distance = Vector3.Distance(lastPosition, coordinates);
         lastPosition = coordinates;
 
@@ -63,13 +61,11 @@ public class playerNoise : MonoBehaviour
             float speed = GetDistance();
        
 
-            Debug.Log("speed" + speed);
             int movement = speed <= (speedThresholdVeryLow * 0.01) ? 0 :
                         speed <= (speedThresholdLow * 0.01) ? 5 :
                         speed <= (speedThresholdMed * 0.01) ? 10 :
                         speed <= (speedThresholdHigh * 0.01) ? 20 :
                         speed <= (speedThresholdVeryHigh * 0.01) ? 50 : 100;
-            Debug.Log("movement" + movement);
 
             noise = (noise - lastMovement) + Math.Max(movement, lastMovement);
 
