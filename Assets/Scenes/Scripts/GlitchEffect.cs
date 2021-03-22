@@ -66,7 +66,7 @@ public class GlitchEffect : MonoBehaviour
         if (proximity == 0.25f) Vibration.VibratePop();
         if (proximity == 0.5f) Vibration.VibrateNope();
         if (proximity == 0.75f) Vibration.Vibrate();
-        if (proximity >= 1f) Vibration.VibratePeek();
+        if (proximity >= 1f) Vibration.Vibrate(1000);
 
         yield return new WaitForSeconds(1);
 
