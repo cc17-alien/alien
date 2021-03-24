@@ -32,7 +32,7 @@ Below is an illustration of gameplay from creation to game over.
 
 <!-- <img src="./img/gameflow.jpg" /> -->
 
-![user interface](img/userInerface.png)
+![user interface](img/UserInerface.png)
 ![staring game](img/startingGame.png)
 ![gameplay1](img/gameplay1.png)
 ![gameplay2](img/gameplay2.png)
