@@ -1,5 +1,8 @@
 # Alien Chomp
 
+Deployed on Google Play Store :  
+https://play.google.com/store/apps/details?id=com.cc17.alienchomp
+
 ## About our game
 
 ### Game Summary
