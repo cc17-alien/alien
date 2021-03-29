@@ -7,7 +7,7 @@ https://play.google.com/store/apps/details?id=com.cc17.alienchomp
 
 ### Game Summary
 
-Alien Chomp! is a cooperative multiplayer mobile game for Android where players complete objectives while avoiding an alien which is trying to chomp them.
+Alien Chomp is a cooperative multiplayer mobile game for Android where players complete objectives while avoiding an alien which is trying to chomp them.
 
 This game uses players' real-life location as their location within the game. Objectives correspond with map coordinates, which players must walk to in order to complete.
 
